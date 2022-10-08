@@ -6,13 +6,14 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.1.2",
     "bulma": "^0.9.4",
     "jose": "^4.10.0",
-    "simple-crypto": "../simple-crypto",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "simple-crypto": "../simple-crypto",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

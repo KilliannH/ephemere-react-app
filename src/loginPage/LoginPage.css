@@ -1,4 +1,4 @@
-.login-button {
+.login-button-container {
     margin-top: 40px;   
 }
 
@@ -6,3 +6,47 @@
     font-size: large;
     margin-bottom: 0.2em;
 }
+
+.btn-fb {
+  display: inline-block;
+  border-radius: 1px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
+}
+
+.fb-content, .btn-fb, .btn-fb .fb-content {
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+  }
+  .fb-content .logo, .btn-fb .logo, .btn-fb .fb-content .logo {
+    padding: 5px;
+    height: inherit;
+  }
+  .fb-content svg, .btn-fb svg, .btn-fb .fb-content svg {
+    width: 40px;
+    height: 40px;
+  }
+  .fb-content p, .btn-fb p, .btn-fb .fb-content p {
+    width: 100%;
+    line-height: 1;
+    letter-spacing: 0.21px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+  }
+
+  
+  .btn-fb {
+    background: #4267b2;
+    background-color: #1877f2;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  .btn-fb:hover {}
+  .btn-fb .fb-content p {
+    color: rgba(255, 255, 255, 0.87);
+  }
+

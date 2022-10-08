@@ -1,4 +1,4 @@
-.navbar-link {
+.navbar-link, .navbar-item {
     transition-duration: 86ms;
     transition-property: background-color,box-shadow,color;
     background-color: rgb(40, 40, 40);

@@ -1,23 +1,20 @@
 import './Navbar.css';
-import * as config from '../config';
+import {Link} from "react-router-dom";
+import constants from '../constants';
 
 function Navbar(props) {
 
-  const appName = config.appName;
+  const appName = constants.appName;
 
   function buildNavbar() {
     if(props.username) {
       return(
       <div className="navbar-end">
         <div className="navbar-item has-dropdown">
-          <button className="navbar-link" href="#">
-            {props.username}
-          </button>
+          <Link className="navbar-link" to="/">{props.username}</Link>
 
           <div className="navbar-dropdown">
-            <a className="navbar-item" href="/home">
-              Logout
-            </a>
+            <Link className="navbar-item" to="/home">Logout</Link>
           </div>
         </div>
       </div>
@@ -25,7 +22,7 @@ function Navbar(props) {
     } else {
       return(
         <div className="navbar-end">
-          <a className="navbar-item" href="/login">Login</a>
+          <Link className="navbar-item" to="/login">Login</Link>
         </div>
       );
     }
@@ -34,7 +31,7 @@ function Navbar(props) {
   return (
     <nav id="navbar" className="bd-navbar navbar">
       <div className="navbar-brand">
-        <a className="navbar-item navbar-main" href="/home">{appName}</a>
+        <Link className="navbar-item navbar-main" to="/">{appName}</Link>
       </div>
       <div id="navMenu" className="navbar-menu">
         {buildNavbar()}
