@@ -66,13 +66,14 @@ export class AuthService {
     }
 
     login() {
-        return new Promise((reject) => {
+        return new Promise((resolve, reject) => {
             // eslint-disable-next-line no-undef
             FB.login();
             // eslint-disable-next-line no-undef
             FB.Event.subscribe('auth.authResponseChange', function (res) {
                 if (res.status === "connected") {
                     console.log("event received: user connected");
+                    
                     // user accepted facebook connection
                     return this.apiLogin({
                         sub: {
@@ -80,14 +81,16 @@ export class AuthService {
                             accessToken: res.authResponse.accessToken
                         },
                         issuer: constants.appName
-                    });
+                    }).then((decoded) => resolve(decoded));
                 } else {
                     reject("User hasn't submited from FB Login API");
                 }
-            });
+            }.bind(this));
 
+            // unsubscribe from events
             // eslint-disable-next-line no-undef
-            FB.Event.unsubscribe('auth.statusChange', handleResponse);
+            FB.Event.unsubscribe('auth.statusChange', () => {});
+                
         });
     }
 
@@ -119,11 +122,12 @@ export class AuthService {
         return jwt;
     }
 
-    logout() {
+    logout(setUsername) {
         localStorage.removeItem(constants.lsTokenKey);
         // eslint-disable-next-line no-undef
         FB.logout();
         this.userLoggedIn = null;
+        setUsername(this.userLoggedIn);
     }
 }
 
