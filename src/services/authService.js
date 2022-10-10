@@ -65,7 +65,7 @@ export class AuthService {
         });
     }
 
-    login() {
+    login(setUsername) {
         return new Promise((resolve, reject) => {
             // eslint-disable-next-line no-undef
             FB.login();
@@ -81,7 +81,10 @@ export class AuthService {
                             accessToken: res.authResponse.accessToken
                         },
                         issuer: constants.appName
-                    }).then((decoded) => resolve(decoded));
+                    }).then((decoded) => {
+                        setUsername(decoded.sub);
+                        return resolve(decoded)
+                    });
                 } else {
                     reject("User hasn't submited from FB Login API");
                 }
