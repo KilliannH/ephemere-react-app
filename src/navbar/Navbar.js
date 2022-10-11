@@ -22,6 +22,10 @@ function Navbar({ username, logout }) {
   function buildNavbar() {
     if(username) {
       return(
+      <>
+      <div className="navbar-start">
+          <Link className="navbar-item" to="/dashboard">Dashboard</Link>
+      </div>
       <div className="navbar-end">
         <div className={navClass} onClick={toggleDropdown}>
           <a className="navbar-link">{username}</a>
@@ -31,6 +35,7 @@ function Navbar({ username, logout }) {
           </div>
         </div>
       </div>
+      </>
       );
     } else {
       return(
