@@ -56,7 +56,7 @@ export function apiLogin(claims) {
     });
 }
 
-export function login(setUsername) {
+export function login() {
     return new Promise((resolve, reject) => {
         // eslint-disable-next-line no-undef
         FB.login();
@@ -73,7 +73,6 @@ export function login(setUsername) {
                     },
                     issuer: constants.appName
                 }).then((decoded) => {
-                    setUsername(decoded.sub);
                     return resolve(decoded)
                 });
             } else {
@@ -112,7 +111,7 @@ async function _encodeToken(claims) {
     return jwt;
 }
 
-export function logout(setUsername) {
+export function logout() {
     const lsToken = localStorage.getItem(constants.lsTokenKey);
     if (!lsToken) {
         return Promise.resolve;
@@ -122,7 +121,6 @@ export function logout(setUsername) {
         // eslint-disable-next-line no-undef
         FB.logout();
         this.userLoggedIn = null;
-        setUsername(null);
         resolve();
     });
 }

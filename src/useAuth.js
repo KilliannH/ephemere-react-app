@@ -1,21 +1,23 @@
 import { useState, createContext, useContext } from "react";
+import constants from './constants';
+import * as authService from './services/authService';
 
 const AuthContext = createContext();
 
 export function useAuth() {
-  const [authed, setAuthed] = useState(false);
+  const [connUser, setConnUser] = useState(null);
 
   return {
-    authed,
-    loginCB() {
+    connUser,
+    loginCB: (res) => {
       return new Promise((resolve) => {
-        setAuthed(true);
+        setConnUser(res);
         resolve();
       });
     },
-    logoutCB() {
-      return new Promise((res) => {
-        setAuthed(false);
+    logoutCB: () => {
+      return new Promise((resolve) => {
+        setConnUser(null);
         resolve();
       });
     },
@@ -25,6 +27,40 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const auth = useAuth();
 
+  function initConnection(loginCB, logoutCB) {
+  
+    return authService.initFbConnection().then((res) => {
+      console.log("FB initialized", res);
+      const accessToken = localStorage.getItem(constants.lsTokenKey);
+        if(res.status === "connected") {
+          if(!accessToken) {
+            // no token in LS
+            return authService.apiLogin({
+              sub: {
+                facebookId: res.authResponse.userID,
+                accessToken: res.authResponse.accessToken
+              },
+              issuer: constants.appName}).then((connUser) => {
+                console.log("Connected with FB user: ", connUser);
+                loginCB(connUser);
+            });
+          } else {
+            // get token from ls
+            const decoded = authService.decodeToken();
+            console.log("token from ls", decoded);
+            loginCB(decoded);
+          }
+        } else {
+          // If Fb doesn't approve connection,
+          // we remove the localStorage token if any
+          if(accessToken) {
+            return authService.logout().then(() => logoutCB());
+          }
+        }
+    });
+  }
+
+  initConnection(auth.loginCB, auth.logoutCB);
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
 
