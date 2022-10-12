@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from "react";
 import constants from './constants';
+import { Navigate, useLocation } from "react-router-dom";
 import * as authService from './services/authService';
 
 const AuthContext = createContext();
@@ -64,6 +65,17 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
 
-export default function AuthConsumer() {
-  return useContext(AuthContext);
+export function RequireAuth({ children }) {
+    const { connUser } = AuthConsumer();
+    const location = useLocation();
+  
+    return connUser && connUser.sub ? (
+      children
+    ) : (
+      <Navigate to="/login" replace state={{ path: location.pathname }} />
+    );
 }
+
+export default function AuthConsumer() {
+    return useContext(AuthContext);
+  }

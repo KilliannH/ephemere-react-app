@@ -1,17 +1,18 @@
 import './LoginPage.css';
 import * as authService from "../services/authService";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../useAuth';
 
 function LoginPage() {
     
     const { loginCB } = useAuth();
-    const Navigate = useNavigate();
-    
+    const navigate = useNavigate();
+    const { state } = useLocation();
+
     function doLogin() {
         return authService.login().then((res) => {
             loginCB(res);
-            Navigate('/dashboard');
+            navigate(state?.path || '/dashboard');
         });
     }
     return (

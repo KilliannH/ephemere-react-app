@@ -1,6 +1,7 @@
 import './Navbar.css';
 import React, { useState } from 'react';
 import useAuth from '../useAuth';
+import { useNavigate } from 'react-router-dom';
 import {Link} from "react-router-dom";
 import * as authService from "../services/authService";
 import constants from '../constants';
@@ -9,11 +10,10 @@ var classNames = require('classnames');
 function Navbar() {
 
   const { connUser, logoutCB } = useAuth();
+  const navigate = useNavigate();
 
   const username = connUser?.sub;
   const [dropdownActive, setDropdownActive] = useState(false);
-
-  console.log(connUser);
 
   let navClass = classNames({
     'navbar-item': true,
@@ -28,7 +28,10 @@ function Navbar() {
   }
 
   function doLogout() {
-    return authService.logout().then(() => logoutCB());
+    return authService.logout().then(() => {
+      logoutCB();
+      navigate('/')
+    });
   }
 
   function buildNavbar() {
