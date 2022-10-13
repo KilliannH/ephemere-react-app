@@ -1,0 +1,16 @@
+.landing-title, .landing-subtitle {
+    text-align: center;
+    line-height: 2em;
+}
+
+.hero-wrapper {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-image: url('https://cdn.pixabay.com/photo/2022/04/26/01/09/tibet-7157189_960_720.jpg');
+}
+
+.landing-assets {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}

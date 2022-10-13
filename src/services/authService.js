@@ -18,7 +18,6 @@ export function initFbConnection() {
             // eslint-disable-next-line no-undef
             FB.init({
                 appId: config.facebook.appId,
-                cookie: true,
                 xfbml: true,
                 version: config.facebook.apiVersion
             });

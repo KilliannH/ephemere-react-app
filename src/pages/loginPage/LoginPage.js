@@ -1,7 +1,7 @@
 import './LoginPage.css';
-import * as authService from "../services/authService";
+import * as authService from "../../services/authService";
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAuth from '../useAuth';
+import useAuth from '../../useAuth';
 
 function LoginPage() {
     

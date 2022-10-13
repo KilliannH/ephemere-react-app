@@ -4,10 +4,11 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import { AuthProvider, RequireAuth } from './useAuth';
 
-import Navbar from './navbar/Navbar';
-import HomePage from './homePage/HomePage';
-import LoginPage from './loginPage/LoginPage';
-import DashboardPage from './dashboardPage/DashboardPage';
+import Navbar from './components/navbar/Navbar';
+import HomePage from './pages/homePage/HomePage';
+import LoginPage from './pages/loginPage/LoginPage';
+import DashboardPage from './pages/dashboardPage/DashboardPage';
+import CookieNotice from './components/cookieNotice/CookieNotice';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <AuthProvider>
           <BrowserRouter>
               <Navbar/>
+              <CookieNotice />
               <Routes>
                 <Route path={"/home"} element={<HomePage />} />
                 <Route path={"/login"} element={<LoginPage />} />
