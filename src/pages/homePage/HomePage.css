@@ -1,15 +1,4 @@
-.landing-title, .landing-subtitle {
-    text-align: center;
-    line-height: 2em;
-}
-
-.landing-assets-parent {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-
-
+/* hero */
 .hero-custom {
     background-color: #ede6d4;
     display: flex;
@@ -17,13 +6,15 @@
     justify-content: space-around;
 }
 
+
+
 .hero-txt {
-    width: 50%;
-    padding: 9% 3%;
+    width: 55%;
+    padding: 8% 3%;
 }
 
 .hero-img {
-    width: 50%;
+    width: 45%;
 }
 
 .hero-img > img {
@@ -39,3 +30,19 @@
     /*
     padding-bottom: calc(100% * 1 / 2);
 */
+
+/* assets */
+
+.landing-assets-parent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.event-card {
+    transition: 100ms ease-out;
+}
+.event-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 500ms ease-out;
+}
