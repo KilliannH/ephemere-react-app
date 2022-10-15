@@ -1,5 +1,8 @@
 import EventCard from '../../components/eventCard/EventCard';
+import CookieNotice from '../../components/cookieNotice/CookieNotice';
+import { useEffect, useState } from 'react';
 import './HomePage.css';
+var classNames = require('classnames');
 
 function _buildEventCards() {
   const assets = [{
@@ -50,9 +53,44 @@ function _buildEventCards() {
 
 function HomePage() {
 
+  const [sticky, setSticky] = useState(false);
+  const [heroPadding, setHeroPadding] = useState(0);
+
+  let cookieNoticePos = null;
+  let heroPos = null;
+  let stickyTmp = false;
+
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    console.log(position);
+    if(!stickyTmp && position >= cookieNoticePos) {
+      console.log("bibi passed1");
+      setSticky(true);
+      setHeroPadding(heroPos);
+      stickyTmp = true;
+    } else if(stickyTmp && position < cookieNoticePos) {
+      console.log("bibi passed2");
+      setSticky(false);
+      setHeroPadding(0);
+      stickyTmp = false;
+    }
+  };
+
+  useEffect(() => {
+    cookieNoticePos = document.getElementById("cookie-notice")?.offsetTop;
+    heroPos = document.getElementById("hero-custom")?.offsetTop;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // need to change how heroPos is calculated to get good value
   return (
     <>
-    <section className="hero-custom">
+    <CookieNotice sticky={sticky}/>
+    <section id="hero-custom" style={{'padding-top': heroPadding === 0 ? 0 : heroPadding + "px"}}>
       <div className="hero-txt">
         <p className="title">
         Meet people with the same <strong>interests</strong> as yours

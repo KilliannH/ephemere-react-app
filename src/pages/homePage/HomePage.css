@@ -1,12 +1,10 @@
 /* hero */
-.hero-custom {
+#hero-custom {
     background-color: #ede6d4;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
 }
-
-
 
 .hero-txt {
     width: 55%;

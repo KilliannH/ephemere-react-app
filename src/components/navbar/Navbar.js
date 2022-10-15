@@ -46,7 +46,7 @@ function Navbar() {
           <div className="buttons">
             <a className="button is-link mr-3">
                 <span className="icon is-hidden-touch is-hidden-desktop-only">
-                  <i className="fas fa-plus"></i>
+                <span className="ion-plus" />
                 </span>
                 <span>
                   New event

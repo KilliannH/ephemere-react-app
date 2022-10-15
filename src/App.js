@@ -1,4 +1,4 @@
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'ionicons/css/ionicons.min.css';
 import 'bulma/css/bulma.min.css';
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
@@ -9,7 +9,6 @@ import Navbar from './components/navbar/Navbar';
 import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
 import DashboardPage from './pages/dashboardPage/DashboardPage';
-import CookieNotice from './components/cookieNotice/CookieNotice';
 
 function App() {
 
@@ -17,7 +16,6 @@ function App() {
     <AuthProvider>
           <BrowserRouter>
               <Navbar/>
-              <CookieNotice />
               <Routes>
                 <Route path={"/home"} element={<HomePage />} />
                 <Route path={"/login"} element={<LoginPage />} />

@@ -1,5 +1,14 @@
 import './CookieNotice.css';
-export default function CookieNotice() {
+var classNames = require('classnames');
+
+export default function CookieNotice({sticky}) {
+
+  let cookieNoticeClass = classNames({
+    'p-5': true,
+    'has-background-light': true,
+    'sticky': sticky
+  });
+
     const cookieSentencePart1 = "This website or its third-party tools use cookies, wich are necessary for its functioning"
     + "and required to achieve the purposes illustrated in the cookie policy.";
     
@@ -7,7 +16,7 @@ export default function CookieNotice() {
     + "by clicking a link or button or by continuing to browse otherwise.";
 
     return(
-        <div className="p-5 has-background-light cookie-notice">
+        <div id="cookie-notice" className={cookieNoticeClass}>
           <div className="level">
             <div className='level-left'>
               <h4 className="is-size-5 has-text-weight-bold">Cookie Policy</h4>    
