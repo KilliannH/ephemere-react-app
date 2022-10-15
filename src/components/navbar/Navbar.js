@@ -72,7 +72,13 @@ function Navbar() {
     <nav id="navbar" className="bd-navbar navbar">
       <div className="navbar-brand">
         <Link className="navbar-item navbar-main" to="/">
-          <img src={process.env.PUBLIC_URL + '/assets/logo_v2.png'} alt="Ephemeral logo" /> {appName}</Link>
+          <img src={process.env.PUBLIC_URL + '/assets/logo_v2.png'} alt="Ephemeral logo" /> {appName}
+        </Link>
+        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
       </div>
       <div id="navMenu" className="navbar-menu">
         {buildNavbar()}

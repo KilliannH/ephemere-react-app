@@ -9,6 +9,32 @@
   margin-right: 10px;
 }
 
+.navbar-burger {
+  background-color: rgb(40, 40, 40);
+  color: #f0f0f0;
+  appearance: none;
+  background: 0 0;
+  border: none;
+  cursor: pointer;
+  display: block;
+  height: auto;
+  margin-right: 10px;
+  position: relative;
+  width: 3.25rem;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar-burger {
+      display: none;
+  }
+}
+
+.navbar-burger:hover {
+  background-color: rgb(40, 40, 40);
+  color: red;
+}
+
 .navbar-link {
   transition-duration: 86ms;
   transition-property: background-color,box-shadow,color;
