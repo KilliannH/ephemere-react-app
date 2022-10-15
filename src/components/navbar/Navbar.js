@@ -42,10 +42,15 @@ function Navbar() {
           <Link className="navbar-item" to="/dashboard">Dashboard</Link>
       </div>
       <div className="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-link">
-              <strong>New event</strong>
+        <div className="navbar-item">
+          <div className="buttons">
+            <a className="button is-link mr-3">
+                <span className="icon is-hidden-touch is-hidden-desktop-only">
+                  <i className="fas fa-plus"></i>
+                </span>
+                <span>
+                  New event
+                </span>
             </a>
           </div>
         </div>
