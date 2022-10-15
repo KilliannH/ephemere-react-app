@@ -3,7 +3,7 @@ import './EventCard.css';
 export default function EventCard(props) {
     const asset = props.data
     return(
-        <div className="card event-card">
+        <div className="card event-card landing-assets-child">
             <div className="card-image">
                 <figure className="image is-4by3">
                 <img src={asset.imageUrl} alt="Placeholder image" />

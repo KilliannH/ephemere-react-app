@@ -1,5 +1,12 @@
 .event-card {
     width: 335px;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 3%;
+}
+
+.landing-assets-child {
+    flex-grow: 1;
 }
 
 .card-title {
