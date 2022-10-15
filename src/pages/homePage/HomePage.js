@@ -11,7 +11,7 @@ function _buildEventCards() {
   },
   {
     id: 2,
-    title: "Carte Blanche à Chaleur Tournantes @Trempo",
+    title: "Carte Blanche à Chaleur Turnantes @Trempo",
     location: "Trempo",
     dateTime: "15-10-2022 21:00",
     imageUrl: "/assets/evt_2.jpg"
@@ -52,14 +52,17 @@ function HomePage() {
 
   return (
     <>
-    <section className="hero hero-custom is-medium">
-      <div className="hero-body">
+    <section className="hero-custom">
+      <div className="hero-txt">
         <p className="title">
         Meet people with the same <strong>interests</strong> as yours
         </p>
         <p className="subtitle">
         Try now, for free.
         </p>
+      </div>
+      <div className="hero-img">
+        <img src={process.env.PUBLIC_URL + '/assets/conversation_illu_2.png'} alt="a drawing with two characters having a conversation" />
       </div>
     </section>
     <section className="section">

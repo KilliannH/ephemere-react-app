@@ -12,16 +12,30 @@
 
 .hero-custom {
     background-color: #ede6d4;
-    padding-bottom: 8%;
-    /* trick to scale an svg 
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.hero-txt {
+    width: 50%;
+    padding: 9% 3%;
+}
+
+.hero-img {
+    width: 50%;
+}
+
+.hero-img > img {
+    width: auto;
+    display: block;
+}
+
+/* trick to scale an svg 
     background-image: url("../../svgs/hero-gradiant.svg");
     background-size: cover;
     height: 0;
     padding: 0; /* reset */
     /*
     padding-bottom: calc(100% * 1 / 2);
-    */
-    background-image: url('../../../public/assets/conversation_illu_2.png');
-    background-repeat: no-repeat;
-    background-position: 80%;
-}
+*/
