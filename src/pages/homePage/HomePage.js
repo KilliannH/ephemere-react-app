@@ -4,45 +4,45 @@ import './HomePage.css';
 function _buildEventCards() {
   const assets = [{
     id: 1,
-    title: "Radio Event of the year",
-    location: "44 Tours",
-    dateTime: "12-10-2022 19:00",
-    imageUrl: "https://cdn.pixabay.com/photo/2022/10/08/09/19/winter-7506621_960_720.jpg"
+    title: "Noctambule #02 w/ Alëx Voiceless",
+    location: "Le ferrailleur - Club Concert",
+    dateTime: "15-10-2022 19:00",
+    imageUrl: "/assets/evt_1.jpg"
   },
   {
     id: 2,
-    title: "DJ set by Ddd ipsum",
-    location: "Le Ferrailleur",
-    dateTime: "14-10-2022 21:00",
-    imageUrl: "https://cdn.pixabay.com/photo/2022/08/16/00/56/building-7389074_960_720.jpg"
+    title: "Carte Blanche à Chaleur Tournantes @Trempo",
+    location: "Trempo",
+    dateTime: "15-10-2022 21:00",
+    imageUrl: "/assets/evt_2.jpg"
   },
   {
     id: 3,
-    title: "Impro allucinant au florida",
-    location: "Le Florida",
-    dateTime: "14-10-2022 20:00",
-    imageUrl: "https://cdn.pixabay.com/photo/2022/10/04/23/33/mountains-7499281_960_720.jpg"
+    title: "Abstrack & The Balek Band (Live) invitent Wolf Müller & Niklas Wandt (live)",
+    location: "Stereolux",
+    dateTime: "19-10-2022 20:00",
+    imageUrl: "/assets/evt_3.jpg"
   },
   {
   id: 4,
-  title: "Radio Event of the year",
-  location: "44 Tours",
-  dateTime: "12-10-2022 19:00",
-  imageUrl: "https://cdn.pixabay.com/photo/2022/10/08/09/19/winter-7506621_960_720.jpg"
+  title: "Battle Opsession • Festival Hip Opsession Danse 2023",
+  location: "Le Lieu unique",
+  dateTime: "18-02-2022 19:00",
+  imageUrl: "/assets/evt_4.jpg"
 },
 {
   id: 5,
-  title: "DJ set by Ddd ipsum",
-  location: "Le Ferrailleur",
+  title: "La Saperie - vide dressing, créateurs, expo, art & music",
+  location: "Décadanse",
   dateTime: "14-10-2022 21:00",
-  imageUrl: "https://cdn.pixabay.com/photo/2022/08/16/00/56/building-7389074_960_720.jpg"
+  imageUrl: "/assets/evt_5.jpg"
 },
 {
   id: 6,
-  title: "Impro allucinant au florida",
-  location: "Le Florida",
-  dateTime: "14-10-2022 20:00",
-  imageUrl: "https://cdn.pixabay.com/photo/2022/10/04/23/33/mountains-7499281_960_720.jpg"
+  title: "Jay & The Family Affair au Live Bar !",
+  location: "Le Live Bar",
+  dateTime: "16-10-2022 18:00",
+  imageUrl: "/assets/evt_6.jpg"
 }]
   const cards = assets.map((asset) => <EventCard key={asset.id} data={asset}/>);
   return(<>{cards}</>);

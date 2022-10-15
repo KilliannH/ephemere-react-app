@@ -3,12 +3,6 @@
     line-height: 2em;
 }
 
-.hero-wrapper {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    background-image: url('https://cdn.pixabay.com/photo/2022/04/26/01/09/tibet-7157189_960_720.jpg');
-}
-
 .landing-assets-parent {
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +21,7 @@
     /*
     padding-bottom: calc(100% * 1 / 2);
     */
-    background-image: url('../../assets/conversation_illu_2.png');
+    background-image: url('../../../public/assets/conversation_illu_2.png');
     background-repeat: no-repeat;
     background-position: 80%;
 }
