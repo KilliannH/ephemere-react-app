@@ -42,6 +42,13 @@ function Navbar() {
           <Link className="navbar-item" to="/dashboard">Dashboard</Link>
       </div>
       <div className="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-link">
+              <strong>New event</strong>
+            </a>
+          </div>
+        </div>
         <div className={navClass} onClick={toggleDropdown}>
           <a className="navbar-link">{username}</a>
 
@@ -64,7 +71,8 @@ function Navbar() {
   return (
     <nav id="navbar" className="bd-navbar navbar">
       <div className="navbar-brand">
-        <Link className="navbar-item navbar-main" to="/">{appName}</Link>
+        <Link className="navbar-item navbar-main" to="/">
+          <img src={process.env.PUBLIC_URL + '/assets/logo_v2.png'} alt="Ephemeral logo" /> {appName}</Link>
       </div>
       <div id="navMenu" className="navbar-menu">
         {buildNavbar()}

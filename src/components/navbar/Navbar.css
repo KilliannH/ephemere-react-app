@@ -4,10 +4,16 @@
   color: #f0f0f0;
 }
 
+.navbar-item img {
+  max-height: 3rem;
+  margin-right: 10px;
+}
+
 .navbar-link {
   transition-duration: 86ms;
   transition-property: background-color,box-shadow,color;
   color: #f0f0f0;
+  padding: 0.5rem 1.75rem;
 }
 
 .navbar-item:hover > a {
