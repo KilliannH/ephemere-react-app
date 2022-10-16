@@ -58,18 +58,16 @@ function HomePage() {
 
   let cookieNoticePos = null;
   let heroPos = null;
+  let navbarHeight = null;
   let stickyTmp = false;
 
   const handleScroll = () => {
     const position = window.pageYOffset;
-    console.log(position);
     if(!stickyTmp && position >= cookieNoticePos) {
-      console.log("bibi passed1");
       setSticky(true);
-      setHeroPadding(heroPos);
+      setHeroPadding(heroPos - navbarHeight);
       stickyTmp = true;
     } else if(stickyTmp && position < cookieNoticePos) {
-      console.log("bibi passed2");
       setSticky(false);
       setHeroPadding(0);
       stickyTmp = false;
@@ -79,6 +77,8 @@ function HomePage() {
   useEffect(() => {
     cookieNoticePos = document.getElementById("cookie-notice")?.offsetTop;
     heroPos = document.getElementById("hero-custom")?.offsetTop;
+    navbarHeight = document.getElementById("navbar")?.offsetHeight;
+    console.log("hhh", heroPos, navbarHeight);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
@@ -90,7 +90,7 @@ function HomePage() {
   return (
     <>
     <CookieNotice sticky={sticky}/>
-    <section id="hero-custom" style={{'padding-top': heroPadding === 0 ? 0 : heroPadding + "px"}}>
+    <section id="hero-custom" style={{paddingTop: !heroPadding ? 0 : heroPadding + "px"}}>
       <div className="hero-txt">
         <p className="title">
         Meet people with the same <strong>interests</strong> as yours
