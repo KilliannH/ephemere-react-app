@@ -73,12 +73,17 @@ function HomePage() {
   const handleScroll = () => {
     const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
       && localStorage.getItem(constants.lsCookieKey) === "True");
+
+    if(cookieAccepted) {
+      return;
+    }
+
     const position = window.pageYOffset;
-    if (!stickyTmp && !cookieAccepted && position >= cookieNoticePos) {
+    if (!stickyTmp && position >= cookieNoticePos) {
       setSticky(true);
       setHeroPadding(heroPos - navbarHeight);
       stickyTmp = true;
-    } else if (stickyTmp  && !cookieAccepted && position < cookieNoticePos) {
+    } else if (stickyTmp && position < cookieNoticePos) {
       setSticky(false);
       setHeroPadding(0);
       stickyTmp = false;
@@ -92,7 +97,12 @@ function HomePage() {
   }
 
   useEffect(() => {
-
+    const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
+      && localStorage.getItem(constants.lsCookieKey) === "True");
+    if(cookieAccepted) {
+      return;
+    }
+    
     cookieNoticePos = document.getElementById("cookie-notice")?.offsetTop;
     heroPos = document.getElementById("hero-custom")?.offsetTop;
     navbarHeight = document.getElementById("navbar")?.offsetHeight;
