@@ -1,8 +1,8 @@
 import EventCard from '../../components/eventCard/EventCard';
 import CookieNotice from '../../components/cookieNotice/CookieNotice';
 import { useEffect, useState } from 'react';
+import constants from '../../constants';
 import './HomePage.css';
-var classNames = require('classnames');
 
 function _buildEventCards() {
   const assets = [{
@@ -27,28 +27,37 @@ function _buildEventCards() {
     imageUrl: "/assets/evt_3.jpg"
   },
   {
-  id: 4,
-  title: "Battle Opsession • Festival Hip Opsession Danse 2023",
-  location: "Le Lieu unique",
-  dateTime: "18-02-2022 19:00",
-  imageUrl: "/assets/evt_4.jpg"
-},
-{
-  id: 5,
-  title: "La Saperie - vide dressing, créateurs, expo, art & music",
-  location: "Décadanse",
-  dateTime: "14-10-2022 21:00",
-  imageUrl: "/assets/evt_5.jpg"
-},
-{
-  id: 6,
-  title: "Jay & The Family Affair au Live Bar !",
-  location: "Le Live Bar",
-  dateTime: "16-10-2022 18:00",
-  imageUrl: "/assets/evt_6.jpg"
-}]
-  const cards = assets.map((asset) => <EventCard key={asset.id} data={asset}/>);
-  return(<>{cards}</>);
+    id: 4,
+    title: "Battle Opsession • Festival Hip Opsession Danse 2023",
+    location: "Le Lieu unique",
+    dateTime: "18-02-2022 19:00",
+    imageUrl: "/assets/evt_4.jpg"
+  },
+  {
+    id: 5,
+    title: "La Saperie - vide dressing, créateurs, expo, art & music",
+    location: "Décadanse",
+    dateTime: "14-10-2022 21:00",
+    imageUrl: "/assets/evt_5.jpg"
+  },
+  {
+    id: 6,
+    title: "Jay & The Family Affair au Live Bar !",
+    location: "Le Live Bar",
+    dateTime: "16-10-2022 18:00",
+    imageUrl: "/assets/evt_6.jpg"
+  }]
+  const cards = assets.map((asset) => <EventCard key={asset.id} data={asset} />);
+  return (<>{cards}</>);
+}
+
+function _buildCookieNotice(sticky, cookieCB) {
+  const cookieAccepted = localStorage.getItem(constants.lsCookieKey);
+  if (cookieAccepted && cookieAccepted === "True") {
+    return;
+  } else {
+    return <CookieNotice sticky={sticky} cookieCB={cookieCB} />;
+  }
 }
 
 function HomePage() {
@@ -62,55 +71,63 @@ function HomePage() {
   let stickyTmp = false;
 
   const handleScroll = () => {
+    const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
+      && localStorage.getItem(constants.lsCookieKey) === "True");
     const position = window.pageYOffset;
-    if(!stickyTmp && position >= cookieNoticePos) {
+    if (!stickyTmp && !cookieAccepted && position >= cookieNoticePos) {
       setSticky(true);
       setHeroPadding(heroPos - navbarHeight);
       stickyTmp = true;
-    } else if(stickyTmp && position < cookieNoticePos) {
+    } else if (stickyTmp  && !cookieAccepted && position < cookieNoticePos) {
       setSticky(false);
       setHeroPadding(0);
       stickyTmp = false;
     }
   };
 
+  const cookieCB = () => {
+    localStorage.setItem(constants.lsCookieKey, "True");
+    setSticky(false);
+    setHeroPadding(0);
+  }
+
   useEffect(() => {
+
     cookieNoticePos = document.getElementById("cookie-notice")?.offsetTop;
     heroPos = document.getElementById("hero-custom")?.offsetTop;
     navbarHeight = document.getElementById("navbar")?.offsetHeight;
-    console.log("hhh", heroPos, navbarHeight);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-        window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   // need to change how heroPos is calculated to get good value
   return (
     <>
-    <CookieNotice sticky={sticky}/>
-    <section id="hero-custom" style={{paddingTop: !heroPadding ? 0 : heroPadding + "px"}}>
-      <div className="hero-txt">
-        <p className="title">
-        Meet people with the same <strong>interests</strong> as yours
-        </p>
-        <p className="subtitle">
-        Try now, for free.
-        </p>
-      </div>
-      <div className="hero-img">
-        <img src={process.env.PUBLIC_URL + '/assets/conversation_illu_2.png'} alt="a drawing with two characters having a conversation" />
-      </div>
-    </section>
-    <section className="section">
-    <div className="container landing-container">
-      <div className='landing-assets-parent'>
-        {_buildEventCards()} 
-      </div> 
-    </div>
-  </section>
-  </>
+      {_buildCookieNotice(sticky, cookieCB)}
+      <section id="hero-custom" style={{ paddingTop: !heroPadding ? 0 : heroPadding + "px" }}>
+        <div className="hero-txt">
+          <p className="title">
+            Meet people with the same <strong>interests</strong> as yours
+          </p>
+          <p className="subtitle">
+            Try now, for free.
+          </p>
+        </div>
+        <div className="hero-img">
+          <img src={process.env.PUBLIC_URL + '/assets/conversation_illu_2.png'} alt="a drawing with two characters having a conversation" />
+        </div>
+      </section>
+      <section className="section">
+        <div className="container landing-container">
+          <div className='landing-assets-parent'>
+            {_buildEventCards()}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 

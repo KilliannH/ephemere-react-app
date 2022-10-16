@@ -1,7 +1,7 @@
 import './CookieNotice.css';
 var classNames = require('classnames');
 
-export default function CookieNotice({sticky}) {
+export default function CookieNotice({sticky, cookieCB}) {
 
   let cookieNoticeClass = classNames({
     'p-5': true,
@@ -22,11 +22,11 @@ export default function CookieNotice({sticky}) {
               <h4 className="is-size-5 has-text-weight-bold">Cookie Policy</h4>    
             </div>
             <div className="level-right">
-            <button className="delete"></button>
+            <button className="delete" onClick={() => cookieCB()}></button>
             </div>
           </div>
           <p className="mb-5 has-text-grey-dark">We use cookies to personalise content, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners. If you want to change your cookie setting, please see the ‘how to reject cookies' section of our . Otherwise, if you agree to our use of cookies, please continue to use our website.</p>
-          <a className="button is-link mr-2" href="#">Allow</a><a className="button is-outlined is-danger" href="#">Decline</a>
+          <button className="button is-link mr-2" onClick={() => cookieCB()}>Allow</button><button className="button is-outlined is-danger" onClick={() => cookieCB()}>Decline</button>
         </div>
     );
 }
