@@ -31,6 +31,10 @@
 
 /* assets */
 
+.landing-section {
+    margin-top: 2%;
+}
+
 .landing-assets-parent {
     display: flex;
     flex-wrap: wrap;

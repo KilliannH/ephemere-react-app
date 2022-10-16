@@ -130,8 +130,8 @@ function HomePage() {
           <img src={process.env.PUBLIC_URL + '/assets/conversation_illu_2.png'} alt="a drawing with two characters having a conversation" />
         </div>
       </section>
-      <section className="section">
-        <div className="container landing-container">
+      <section className="section landing-section">
+        <div className="container">
           <div className='landing-assets-parent'>
             {_buildEventCards()}
           </div>
