@@ -44,7 +44,7 @@ function Navbar() {
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
-            <a className="button is-link mr-3">
+            <a className="button is-info mr-3">
                 <span className="icon is-hidden-touch is-hidden-desktop-only">
                   <span className="ion-plus"></span>
                 </span>

@@ -51,17 +51,12 @@ function _buildEventCards() {
   return (<>{cards}</>);
 }
 
-function _buildCookieNotice(sticky, cookieCB) {
-  const cookieAccepted = localStorage.getItem(constants.lsCookieKey);
-  if (cookieAccepted && cookieAccepted === "True") {
-    return;
-  } else {
-    return <CookieNotice sticky={sticky} cookieCB={cookieCB} />;
-  }
-}
-
 function HomePage() {
 
+  const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
+      && localStorage.getItem(constants.lsCookieKey) === "True");
+
+  const [cookieAcceptedState, setCookieAcceptedState] = useState(cookieAccepted);
   const [sticky, setSticky] = useState(false);
   const [heroPadding, setHeroPadding] = useState(0);
 
@@ -94,6 +89,16 @@ function HomePage() {
     localStorage.setItem(constants.lsCookieKey, "True");
     setSticky(false);
     setHeroPadding(0);
+    setCookieAcceptedState(true);
+    console.log("sticky", sticky);
+  }
+
+  const _buildCookieNotice = (sticky) => {
+    if (cookieAcceptedState) {
+      return;
+    } else {
+      return <CookieNotice sticky={sticky} cookieCB={cookieCB} />;
+    }
   }
 
   useEffect(() => {
@@ -116,7 +121,7 @@ function HomePage() {
   // need to change how heroPos is calculated to get good value
   return (
     <>
-      {_buildCookieNotice(sticky, cookieCB)}
+      {_buildCookieNotice(sticky)}
       <section id="hero-custom" style={{ paddingTop: !heroPadding ? 0 : heroPadding + "px" }}>
         <div className="hero-txt">
           <p className="title">

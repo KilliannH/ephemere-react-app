@@ -75,6 +75,10 @@ a.navbar-item:focus {
   background-color: rgb(40, 40, 40);
 }
 
+.navbar-dropdown > .navbar-item {
+  color: #0a0a0a;
+}
+
 .navbar-main {
   padding: 0.75em 1em;
   color:#f0f0f0;
