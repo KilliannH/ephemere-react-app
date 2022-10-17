@@ -12,7 +12,7 @@ function Navbar() {
   const { connUser, logoutCB } = useAuth();
   const navigate = useNavigate();
 
-  const username = connUser?.sub;
+  const username = connUser?.username;
   const [dropdownActive, setDropdownActive] = useState(false);
 
   let navClass = classNames({
@@ -48,7 +48,7 @@ function Navbar() {
                 <span className="icon is-hidden-touch is-hidden-desktop-only">
                   <span className="ion-plus"></span>
                 </span>
-                <span>New event</span>
+                <span>Add</span>
             </a>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { useState, createContext, useContext } from "react";
 import constants from './constants';
 import { Navigate, useLocation } from "react-router-dom";
 import * as authService from './services/authService';
+import * as dataService from './services/dataService';
 
 const AuthContext = createContext();
 
@@ -49,7 +50,11 @@ export function AuthProvider({ children }) {
             // get token from ls
             const decoded = authService.decodeToken();
             console.log("token from ls", decoded);
-            loginCB(decoded);
+            // get user from be
+            dataService.getUserByFacebookId(decoded.facebookId).then(({ data }) => {
+              console.log("getUser", data);
+              loginCB(data);
+          });
           }
         } else {
           // If Fb doesn't approve connection,
@@ -69,7 +74,7 @@ export function RequireAuth({ children }) {
     const { connUser } = AuthConsumer();
     const location = useLocation();
   
-    return connUser && connUser.sub ? (
+    return connUser && connUser.username ? (
       children
     ) : (
       <Navigate to="/login" replace state={{ path: location.pathname }} />

@@ -5,8 +5,8 @@ const axios = require("axios").default;
 const config = require("../config");
 
 const instance = axios.create({
-    baseURL: `${config.backendProtocol}://${config.backendHost}:${config.backendPort}`,
-    timeout: 1000,
+    baseURL: constants.urlPrefix,
+    timeout: 5000,
     // headers: {'X-Custom-Header': 'foobar'}
 });
 
@@ -48,8 +48,7 @@ export function apiLogin(claims) {
             return instance.post('/authenticate', { accessToken: encoded }).then(({ data }) => {
                 console.log("result from be", data);
                 localStorage.setItem(constants.lsTokenKey, data.token);
-                const decoded = decodeToken();
-                resolve(decoded);
+                resolve(data.user);
             });
         }).catch((e) => reject(e));
     });

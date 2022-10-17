@@ -65,11 +65,13 @@ function HomePage() {
   let navbarHeight = null;
   let stickyTmp = false;
 
-  const handleScroll = () => {
-    const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
+  let handleScroll = () => {
+
+    // need to redifine cookieAccepted here bcse handleScroll does not take care of our react state changes
+    const _cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
       && localStorage.getItem(constants.lsCookieKey) === "True");
 
-    if(cookieAccepted) {
+    if(_cookieAccepted) {
       return;
     }
 
@@ -90,7 +92,6 @@ function HomePage() {
     setSticky(false);
     setHeroPadding(0);
     setCookieAcceptedState(true);
-    console.log("sticky", sticky);
   }
 
   const _buildCookieNotice = (sticky) => {
@@ -102,9 +103,7 @@ function HomePage() {
   }
 
   useEffect(() => {
-    const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
-      && localStorage.getItem(constants.lsCookieKey) === "True");
-    if(cookieAccepted) {
+    if(cookieAcceptedState) {
       return;
     }
     
@@ -118,7 +117,6 @@ function HomePage() {
     };
   }, []);
 
-  // need to change how heroPos is calculated to get good value
   return (
     <>
       {_buildCookieNotice(sticky)}
