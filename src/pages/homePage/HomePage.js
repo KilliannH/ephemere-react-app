@@ -123,7 +123,7 @@ function HomePage() {
       <section id="hero-custom" style={{ paddingTop: !heroPadding ? 0 : heroPadding + "px" }}>
         <div className="hero-txt">
           <p className="title">
-            Meet people with the same <strong>interests</strong> as yours
+            Meet people with <i className="ion-load-c"></i> the same <strong>interests</strong> as yours
           </p>
           <p className="subtitle">
             Try now, for free.
