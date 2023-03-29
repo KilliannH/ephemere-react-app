@@ -1,5 +1,6 @@
 import EventCard from '../../components/eventCard/EventCard';
 import CookieNotice from '../../components/cookieNotice/CookieNotice';
+import {useNavigate} from "react-router-dom";
 import { useEffect, useState } from 'react';
 import constants from '../../constants';
 import './HomePage.css';
@@ -52,6 +53,8 @@ function _buildEventCards() {
 }
 
 function HomePage() {
+
+  const navigate = useNavigate();
 
   const cookieAccepted = !!(localStorage.getItem(constants.lsCookieKey) 
       && localStorage.getItem(constants.lsCookieKey) === "True");
@@ -125,7 +128,7 @@ function HomePage() {
           <p className="title">
             Meet people with <i className="ion-load-c"></i> the same <strong>interests</strong> as yours
           </p>
-          <button className="button is-info mr-2" onClick={() => {}}>Try now, for free.</button>
+          <button className="button is-info mr-2" onClick={() => navigate('/signup')}>Try now, for free.</button>
         </div>
         <div className="hero-img">
           <img src={process.env.PUBLIC_URL + '/assets/conversation_illu_2.png'} alt="a drawing with two characters having a conversation" />

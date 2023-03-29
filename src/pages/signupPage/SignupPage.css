@@ -1,0 +1,15 @@
+.custom-hero {
+  max-width: 50%;
+}
+
+.hero {
+  justify-content: center;
+  flex-direction: row;
+}
+
+.header-text {
+    font-size: large;
+    margin-bottom: 0.2em;
+}
+
+

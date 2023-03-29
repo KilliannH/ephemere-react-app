@@ -1,20 +1,20 @@
-import './LoginPage.css';
+import './SignupPage.css';
 import * as authService from "../../services/authService";
 import { useNavigate, useLocation } from 'react-router-dom';
 import {Link} from "react-router-dom";
 import useAuth from '../../useAuth';
 
-function LoginPage() {
+function SignupPage() {
     
     const { loginCB } = useAuth();
     const navigate = useNavigate();
     const { state } = useLocation();
 
-    function doLogin() {
-        return authService.login().then((res) => {
+    function doSignup() {
+        /*return authService.login().then((res) => {
             loginCB(res);
             navigate(state?.path || '/dashboard');
-        });
+        });*/
     }
     return (
         <section class="hero">
@@ -42,24 +42,18 @@ function LoginPage() {
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="checkbox">
-                                    <input type="checkbox" />
-                                    <span>&nbsp;</span>Remember me
-                                </label>
-                            </div>
-                            <div class="field">
                                 <button class="button is-success">
-                                    Login
+                                    Register
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <p>You don't have an account ? <Link to="/signup">Sign up</Link> instead.</p>
+                <p>Already have an account ? <Link to="/login">Login</Link></p>
               </div>
           </div>
       </section>
     );
 }
 
-export default LoginPage;
+export default SignupPage;

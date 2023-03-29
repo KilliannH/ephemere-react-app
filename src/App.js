@@ -8,6 +8,7 @@ import { AuthProvider, RequireAuth } from './useAuth';
 import Navbar from './components/navbar/Navbar';
 import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
+import SignupPage from './pages/signupPage/SignupPage';
 import DashboardPage from './pages/dashboardPage/DashboardPage';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Routes>
                 <Route path={"/home"} element={<HomePage />} />
                 <Route path={"/login"} element={<LoginPage />} />
+                <Route path={"/signup"} element={<SignupPage />} />
                 <Route path={"/dashboard"} element={
                 <RequireAuth>
                   <DashboardPage />
