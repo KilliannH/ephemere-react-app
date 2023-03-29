@@ -125,15 +125,14 @@ function HomePage() {
           <p className="title">
             Meet people with <i className="ion-load-c"></i> the same <strong>interests</strong> as yours
           </p>
-          <p className="subtitle">
-            Try now, for free.
-          </p>
+          <button className="button is-info mr-2" onClick={() => {}}>Try now, for free.</button>
         </div>
         <div className="hero-img">
           <img src={process.env.PUBLIC_URL + '/assets/conversation_illu_2.png'} alt="a drawing with two characters having a conversation" />
         </div>
       </section>
       <section className="section landing-section">
+        <h3 className="title">Events :</h3>
         <div className="container">
           <div className='landing-assets-parent'>
             {_buildEventCards()}

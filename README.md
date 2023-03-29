@@ -1,5 +1,7 @@
 TODO - disconnect user when BE doesn't respond
 
+TODO - need to do all api calls from node server side, and not directly from the client.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

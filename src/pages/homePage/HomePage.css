@@ -31,8 +31,8 @@
 
 /* assets */
 
-.landing-section {
-    margin-top: 2%;
+.landing-section > .title {
+    text-align: center;
 }
 
 .landing-assets-parent {

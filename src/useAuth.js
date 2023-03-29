@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from "react";
 import constants from './constants';
+import * as jose from "jose";
 import { Navigate, useLocation } from "react-router-dom";
 import * as authService from './services/authService';
 import * as dataService from './services/dataService';
@@ -30,40 +31,36 @@ export function AuthProvider({ children }) {
   const auth = useAuth();
 
   function initConnection(loginCB, logoutCB) {
+    console.log(process.env);
   
-    return authService.initFbConnection().then((res) => {
-      console.log("FB initialized", res);
+    return () => {
       const accessToken = localStorage.getItem(constants.lsTokenKey);
-        if(res.status === "connected") {
-          if(!accessToken) {
+        if(!accessToken) {
             // no token in LS
-            return authService.apiLogin({
-              sub: {
-                facebookId: res.authResponse.userID,
-                accessToken: res.authResponse.accessToken
-              },
-              issuer: constants.appName}).then((connUser) => {
-                console.log("Connected with FB user: ", connUser);
-                loginCB(connUser);
-            });
-          } else {
-            // get token from ls
-            const decoded = authService.decodeToken();
-            console.log("token from ls", decoded);
-            // get user from be
-            dataService.getUserByFacebookId(decoded.facebookId).then(({ data }) => {
-              console.log("getUser", data);
-              loginCB(data);
-          });
-          }
+            logoutCB();
         } else {
-          // If Fb doesn't approve connection,
-          // we remove the localStorage token if any
-          if(accessToken) {
-            return authService.logout().then(() => logoutCB());
+          // get token from ls
+          const decoded = jose.decodeJwt(accessToken);
+          console.log("token from ls", decoded);
+            // get user from be
+            dataService.getUserById(decoded.id).then(({ data }) => {
+              console.log("getUserById", data);
+              loginCB(data);
+            }).catch(({response}) => {
+              if(response.status === 401) {
+                // backend revoqued the token, so we logout the user.
+                
+                // TODO --
+                // need to verify if facebook recognize the user, if so
+                // try to sneaky refresh the token
+                // else logout the user
+                return authService.logout().then(() => {
+                  logoutCB();
+                });
+              }
+            });
           }
-        }
-    });
+    }
   }
 
   initConnection(auth.loginCB, auth.logoutCB);
@@ -83,4 +80,4 @@ export function RequireAuth({ children }) {
 
 export default function AuthConsumer() {
     return useContext(AuthContext);
-  }
+}
