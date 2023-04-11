@@ -31,7 +31,6 @@ export function AuthProvider({ children }) {
   const auth = useAuth();
 
   function initConnection(loginCB, logoutCB) {
-    console.log(process.env);
   
     return () => {
       const accessToken = localStorage.getItem(constants.lsTokenKey);

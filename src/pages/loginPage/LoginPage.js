@@ -10,45 +10,51 @@ function LoginPage() {
     const navigate = useNavigate();
     const { state } = useLocation();
 
-    function doLogin() {
-        return authService.login().then((res) => {
+    function doLogin(event) {
+        event.preventDefault();
+        const credentials = {
+            email: event.target.email.value,
+            password: event.target.password.value
+        };
+
+        return authService.login(credentials).then((res) => {
             loginCB(res);
             navigate(state?.path || '/dashboard');
         });
     }
     return (
-        <section class="hero">
-          <div class="hero-body custom-hero">
-              <div class="container">
-                <div class="columns is-5-tablet is-4-desktop is-3-widescreen">
-                    <div class="column">
-                        <form class="box">
-                            <div class="field">
-                                <label class="label">Email</label>
-                                <div class="control has-icons-left">
-                                    <input type="email" class="input" placeholder="e.g. jdoe@gmail.com" />
-                                    <span class="icon is-small is-left">
-                                        <i class="ion-email" />
+        <section className="hero">
+          <div className="hero-body custom-hero">
+              <div className="container">
+                <div className="columns is-5-tablet is-4-desktop is-3-widescreen">
+                    <div className="column">
+                        <form className="box" onSubmit={doLogin}>
+                            <div className="field">
+                                <label className="label">Email</label>
+                                <div className="control has-icons-left">
+                                    <input name="email" type="email" className="input" placeholder="e.g. jdoe@gmail.com" />
+                                    <span className="icon is-small is-left">
+                                        <i className="ion-email" />
                                     </span>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label class="label">Password</label>
-                                <div class="control has-icons-left">
-                                    <input type="password" class="input" placeholder="*********" required />
-                                    <span class="icon is-small is-left">
-                                        <i class="ion-locked" />
+                            <div className="field">
+                                <label className="label">Password</label>
+                                <div className="control has-icons-left">
+                                    <input name="password" type="password" className="input" placeholder="*********" required />
+                                    <span className="icon is-small is-left">
+                                        <i className="ion-locked" />
                                     </span>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label class="checkbox">
+                            <div className="field">
+                                <label className="checkbox">
                                     <input type="checkbox" />
                                     <span>&nbsp;</span>Remember me
                                 </label>
                             </div>
-                            <div class="field">
-                                <button class="button is-success">
+                            <div className="field">
+                                <button className="button is-success">
                                     Login
                                 </button>
                             </div>
